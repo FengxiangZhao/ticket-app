@@ -1,0 +1,29 @@
+<div class="container-sm w-50 p-5">
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-3">
+      <label for="requester">requester</label>
+      <input
+        type="text"
+        id="requester"
+        formControlName="requester"
+        class="form-control"
+      >
+      <label for="course">course</label>
+      <select class="form-select" id="course" formControlName="course">
+        <option>cs2830</option>
+        <option>cs4830</option>
+        <option>cs7830</option>
+        <option>it4830</option>
+      </select>
+      <label for="reason">reason</label>
+      <textarea
+        id="reason"
+        formControlName="reason"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <button type="submit" [disabled]="ticketForm.invalid" class="btn btn-primary">submit</button>
+  </form>
+</div>
+

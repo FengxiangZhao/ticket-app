@@ -1,0 +1,25 @@
+<!--<button (click)="getDataTest()" class="btn btn-primary">get tickets</button>-->
+<!--<div class="card" style="width: 18rem;" *ngFor="let data of this.tests">-->
+<div class="form-check form-switch w-25 mx-auto">
+    <label class="form-check-label" for="showArchived">show archived</label>
+    <input class="form-check-input" type="checkbox" id="showArchived" [checked]="showArchived" (change)="toggled($event)">
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 container-md m-5">
+  <div class="col mb-4 border-dark" style="width: 25rem;" *ngFor="let data of getKeys()">
+<!--  <div class="col mb-4 border-dark" style="width: 25rem;" *ngFor="let data of getKeys()">-->
+    <div class="card">
+<!--      <div class="card-body" [ngClass]="this.tests[data].status === getStatus.new ? 'bg-warning' : 'bg-light'">-->
+      <div class="card-body" [ngClass]="
+      {'bg-warning': this.tests[data].status === getStatus.new,
+       'bg-light': this.tests[data].status === getStatus.pending,
+       'bg-success': this.tests[data].status === getStatus.resolved}">
+        <h5 class="card-title">{{ this.tests[data].course }}</h5>
+        <p class="card-text">{{ this.tests[data].requester }}: {{this.tests[data].reason}}</p>
+        <button class="btn btn-sm btn-secondary m-1" (click)="pending(data)">pending</button>
+        <button class="btn btn-sm btn-primary m-1" (click)="resolve(data)">resolve</button>
+        <button class="btn btn-sm btn-danger m-1" (click)="delete(data)">delete</button>
+      </div>
+    </div>
+  </div>
+</div>
